@@ -1,0 +1,342 @@
+CREAR UNA APLICACIÓN MÓVIL COMPLETA LLAMADA “ACTIVIDAD MENSUAL”
+
+OBJETIVO GENERAL
+
+Desarrollar una aplicación móvil moderna para Android e iPhone que permita registrar y controlar la actividad mensual desde septiembre hasta agosto del año siguiente, almacenando horas, estudios y notas, mostrando estadísticas automáticas mensuales y un resumen anual completo.
+
+La aplicación debe ser rápida, intuitiva, funcionar correctamente en teléfonos móviles y guardar automáticamente la información del usuario.
+
+---------------------------------------------------
+DISEÑO GENERAL
+---------------------------------------------------
+
+- Nombre de la aplicación: Actividad Mensual
+- Diseño moderno y minimalista.
+- Optimizada para pantallas móviles.
+- Compatible con Android e iPhone.
+- Modo claro y modo oscuro.
+- Colores principales:
+  - Azul
+  - Blanco
+  - Gris suave
+- Tarjetas con bordes redondeados.
+- Iconos modernos.
+- Navegación fluida.
+- Guardado automático local.
+- Interfaz completamente en español.
+
+---------------------------------------------------
+PANTALLA DE INICIO (DASHBOARD)
+---------------------------------------------------
+
+Al abrir la aplicación mostrar:
+
+📅 Mes actual
+
+⏱ Horas acumuladas del mes
+
+📚 Estudios acumulados del mes
+
+🎯 Objetivo mensual
+
+📈 Porcentaje alcanzado
+
+📝 Última nota registrada
+
+Mostrar una barra de progreso destacada.
+
+---------------------------------------------------
+NAVEGACIÓN
+---------------------------------------------------
+
+Crear una pestaña o pantalla para cada mes:
+
+• Septiembre
+• Octubre
+• Noviembre
+• Diciembre
+• Enero
+• Febrero
+• Marzo
+• Abril
+• Mayo
+• Junio
+• Julio
+• Agosto
+
+Al final incluir:
+
+📊 Resumen Anual
+
+La navegación debe realizarse mediante pestañas inferiores o menú deslizable lateral.
+
+---------------------------------------------------
+PANTALLA DE CADA MES
+---------------------------------------------------
+
+Cada mes debe tener:
+
+Título:
+Mes correspondiente.
+
+---------------------------------------------------
+SECCIÓN REGISTRO
+---------------------------------------------------
+
+Formulario:
+
+Fecha:
+- Selector de fecha.
+
+Horas:
+- Campo numérico decimal.
+
+Estudios:
+- Campo numérico entero.
+
+Botón:
+
+➕ Agregar Registro
+
+---------------------------------------------------
+LISTADO DE REGISTROS
+---------------------------------------------------
+
+Mostrar todos los registros del mes.
+
+Cada registro debe mostrar:
+
+- Fecha
+- Horas
+- Estudios
+
+Acciones:
+
+✏️ Editar
+
+🗑️ Eliminar
+
+Antes de eliminar solicitar confirmación.
+
+---------------------------------------------------
+OBJETIVO MENSUAL
+---------------------------------------------------
+
+Objetivo fijo:
+
+🎯 50 horas por mes
+
+Calcular automáticamente:
+
+- Horas acumuladas.
+- Horas restantes.
+- Porcentaje alcanzado.
+
+Ejemplos:
+
+25 horas = 50 %
+
+37,5 horas = 75 %
+
+50 horas = 100 %
+
+Mostrar una barra de progreso visual.
+
+Colores:
+
+🔴 Rojo:
+0 a 49 %
+
+🟡 Amarillo:
+50 a 99 %
+
+🟢 Verde:
+100 % o más
+
+Al alcanzar el objetivo mostrar:
+
+✅ ¡Felicitaciones! Objetivo mensual alcanzado.
+
+Si se supera:
+
+🏆 Has superado tu objetivo mensual por X horas.
+
+---------------------------------------------------
+RESUMEN DEL MES
+---------------------------------------------------
+
+Mostrar automáticamente:
+
+✅ Total de horas
+
+✅ Total de estudios
+
+✅ Cantidad de registros
+
+✅ Porcentaje del objetivo alcanzado
+
+✅ Horas restantes para completar las 50 horas
+
+Visualizar estos datos en tarjetas destacadas.
+
+---------------------------------------------------
+NOTAS DEL MES
+---------------------------------------------------
+
+Agregar una sección:
+
+📝 Notas del Mes
+
+Campo de texto libre para escribir:
+
+- Comentarios
+- Observaciones
+- Metas
+- Recordatorios
+
+Guardado automático.
+
+---------------------------------------------------
+RESUMEN ANUAL
+---------------------------------------------------
+
+Crear una pantalla independiente llamada:
+
+📊 Resumen Anual
+
+Mostrar:
+
+⏱ Total general de horas.
+
+📚 Total general de estudios.
+
+🎯 Objetivo anual:
+600 horas.
+
+📈 Progreso anual.
+
+📅 Meses cumplidos.
+
+📅 Meses pendientes.
+
+Promedio mensual de horas.
+
+Promedio mensual de estudios.
+
+---------------------------------------------------
+TABLA RESUMEN ANUAL
+---------------------------------------------------
+
+Mes | Horas | Estudios | % Objetivo
+
+Septiembre
+
+Octubre
+
+Noviembre
+
+Diciembre
+
+Enero
+
+Febrero
+
+Marzo
+
+Abril
+
+Mayo
+
+Junio
+
+Julio
+
+Agosto
+
+Mostrar también:
+
+TOTAL GENERAL
+
+---------------------------------------------------
+GRÁFICOS
+---------------------------------------------------
+
+Incluir gráficos interactivos:
+
+1. Gráfico de barras:
+Horas por mes.
+
+2. Gráfico de barras:
+Estudios por mes.
+
+3. Gráfico anual de progreso.
+
+4. Gráfico circular:
+
+Meses con objetivo alcanzado.
+Meses pendientes.
+
+---------------------------------------------------
+FUNCIONES ADICIONALES
+---------------------------------------------------
+
+✅ Guardado automático.
+
+✅ Almacenamiento local permanente.
+
+✅ Exportar información completa a PDF.
+
+✅ Exportar información completa a Excel.
+
+✅ Crear copia de seguridad.
+
+✅ Restaurar copia de seguridad.
+
+✅ Buscar registros por fecha.
+
+✅ Reiniciar datos de un mes específico.
+
+✅ Reiniciar todo el año.
+
+✅ Confirmar acciones importantes.
+
+✅ Mostrar mensajes de éxito o error.
+
+---------------------------------------------------
+VALIDACIONES
+---------------------------------------------------
+
+- No permitir números negativos.
+- No permitir registros vacíos.
+- Recalcular automáticamente todos los totales.
+- Actualizar gráficos en tiempo real.
+- Mantener los datos aunque se cierre la aplicación.
+
+---------------------------------------------------
+TECNOLOGÍA RECOMENDADA
+---------------------------------------------------
+
+- Flutter (Android e iPhone)
+o
+- React Native
+
+Base de datos local:
+
+- SQLite o Hive
+
+Gráficos:
+
+- FL Chart (Flutter)
+o
+- Victory Native / Recharts
+
+Exportaciones:
+
+- PDF
+- Excel (.xlsx)
+
+---------------------------------------------------
+RESULTADO FINAL ESPERADO
+---------------------------------------------------
+
+Una aplicación móvil profesional llamada “Actividad Mensual”, que permita registrar horas y estudios de septiembre a agosto, seguir el objetivo mensual de 50 horas, registrar notas, visualizar estadísticas mensuales, obtener un resumen anual completo y exportar toda la información en PDF y Excel.

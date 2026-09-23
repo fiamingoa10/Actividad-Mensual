@@ -1,0 +1,148 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-progress-low: var(--progress-low);
+  --color-progress-mid: var(--progress-mid);
+  --color-progress-high: var(--progress-high);
+  --color-ink-soft: var(--ink-soft);
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+}
+
+:root {
+  --radius: 0.875rem;
+  --background: #f3f5f8;
+  --foreground: #121826;
+  --card: #ffffff;
+  --card-foreground: #121826;
+  --popover: #ffffff;
+  --popover-foreground: #121826;
+  --primary: #1a56db;
+  --primary-foreground: #f7f9fc;
+  --secondary: #e8edf5;
+  --secondary-foreground: #1a2740;
+  --muted: #e8edf5;
+  --muted-foreground: #5c6573;
+  --accent: #dce6f7;
+  --accent-foreground: #143a8c;
+  --destructive: #c03535;
+  --destructive-foreground: #fdf7f7;
+  --border: color-mix(in oklab, #121826 10%, transparent);
+  --input: color-mix(in oklab, #121826 12%, transparent);
+  --ring: #1a56db;
+  --progress-low: #c03535;
+  --progress-mid: #b45309;
+  --progress-high: #17824a;
+  --ink-soft: #3c4450;
+  --shadow-card:
+    0px 0px 0px 1px rgba(18, 24, 38, 0.06),
+    0px 1px 2px -1px rgba(18, 24, 38, 0.06),
+    0px 8px 24px -12px rgba(18, 24, 38, 0.08);
+  --shadow-card-hover:
+    0px 0px 0px 1px rgba(18, 24, 38, 0.08),
+    0px 2px 4px -1px rgba(18, 24, 38, 0.08),
+    0px 10px 28px -12px rgba(18, 24, 38, 0.12);
+}
+
+.dark {
+  --background: #0c1017;
+  --foreground: #eef2f7;
+  --card: #161c27;
+  --card-foreground: #eef2f7;
+  --popover: #161c27;
+  --popover-foreground: #eef2f7;
+  --primary: #4c8dff;
+  --primary-foreground: #071225;
+  --secondary: #1e2633;
+  --secondary-foreground: #d5dce8;
+  --muted: #1e2633;
+  --muted-foreground: #9aa3b2;
+  --accent: #243044;
+  --accent-foreground: #c5d4f0;
+  --destructive: #ef6b6b;
+  --destructive-foreground: #2a1010;
+  --border: color-mix(in oklab, #eef2f7 10%, transparent);
+  --input: color-mix(in oklab, #eef2f7 14%, transparent);
+  --ring: #4c8dff;
+  --progress-low: #ef6b6b;
+  --progress-mid: #e0a14a;
+  --progress-high: #3dba74;
+  --ink-soft: #c2c9d4;
+  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-card-hover: 0 0 0 1px rgba(255, 255, 255, 0.13);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

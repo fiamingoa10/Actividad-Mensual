@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Actividad Mensual",
+      "hasCanvas": false,
+      "bodyTextLen": 263,
+      "bodyTextHash": "ef2703cf14b8793f1ee3c4ee681357c4022baa12a699e797127ea152f4b47d03",
+      "bodyTextPrefix": "Actividad Mensual Ciclo 2026–2027 MES ACTUAL Septiembre Horas ac",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Actividad Mensual",
+      "hasCanvas": false,
+      "bodyTextLen": 263,
+      "bodyTextHash": "ef2703cf14b8793f1ee3c4ee681357c4022baa12a699e797127ea152f4b47d03",
+      "bodyTextPrefix": "Actividad Mensual Ciclo 2026–2027 MES ACTUAL Septiembre Horas ac",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
