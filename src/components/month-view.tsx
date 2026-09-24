@@ -235,12 +235,14 @@ return hours + minutes / 60;
 }
 
 function parseStudies(raw: string): number | null {
-  const normalized = raw.trim();
-  if (!normalized) return null;
-  if (!/^\d+$/.test(normalized)) return null;
-  return Number(normalized);
+const normalized = raw.trim();
+ 
+if (!normalized) return 0;
+ 
+if (!/^\d+$/.test(normalized)) return null;
+ 
+return Number(normalized);
 }
-
 function validateRecord(date: string, hoursRaw: string, studiesRaw: string, min: string, max: string) {
   if (!date) return "Elige una fecha.";
   if (date < min || date > max) return "La fecha debe pertenecer a este mes.";
@@ -249,7 +251,7 @@ function validateRecord(date: string, hoursRaw: string, studiesRaw: string, min:
   if (hours === null) return "Indica las horas.";
   if (hours < 0) return "No se permiten números negativos.";
   if (hours > 24) return "Las horas de un registro no pueden superar 24.";
-  if (studies === null) return "Indica los estudios (número entero).";
+ if (studies === null) return "Los estudios deben ser un número entero.";
   if (studies < 0) return "No se permiten números negativos.";
   if (hours === 0 && studies === 0) return "El registro no puede quedar vacío.";
   return null;
