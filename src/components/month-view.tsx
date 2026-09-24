@@ -218,11 +218,20 @@ function SummaryGrid({ stats }: { stats: ReturnType<typeof monthStats> }) {
 }
 
 function parseHours(raw: string): number | null {
-  const normalized = raw.trim().replace(",", ".");
-  if (!normalized) return null;
-  const n = Number(normalized);
-  if (!Number.isFinite(n)) return null;
-  return Math.round(n * 10) / 10;
+const normalized = raw.trim();
+ 
+if (!normalized) return null;
+ 
+const match = normalized.match(/^(\d{1,2}):(\d{1,2})$/);
+ 
+if (!match) return null;
+ 
+const hours = Number(match[1]);
+const minutes = Number(match[2]);
+ 
+if (minutes >= 60) return null;
+ 
+return hours + minutes / 60;
 }
 
 function parseStudies(raw: string): number | null {
@@ -307,8 +316,8 @@ function RecordForm({
             <Field label="Horas" htmlFor="rec-hours">
               <Input
                 id="rec-hours"
-                inputMode="decimal"
-                placeholder="0,0"
+                inputMode="text"
+                placeholder="0:00"
                 value={hours}
                 onChange={(e) => setHours(e.target.value)}
               />
@@ -458,7 +467,7 @@ function RecordList({
               <Field label="Horas" htmlFor="edit-hours">
                 <Input
                   id="edit-hours"
-                  inputMode="decimal"
+                  inputMode="text"
                   value={hours}
                   onChange={(e) => setHours(e.target.value)}
                 />

@@ -81,10 +81,13 @@ export function progressTone(percent: number): "low" | "mid" | "high" {
 }
 
 export function formatHours(n: number): string {
-  const rounded = Math.round(n * 10) / 10;
-  return rounded.toLocaleString("es-ES", { maximumFractionDigits: 1 });
+const totalMinutes = Math.round(n * 60);
+ 
+const hours = Math.floor(totalMinutes / 60);
+const minutes = totalMinutes % 60;
+ 
+return `${hours}:${minutes.toString().padStart(2, "0")}`;
 }
-
 export function formatPercent(n: number): string {
   return `${Math.round(n)} %`;
 }
