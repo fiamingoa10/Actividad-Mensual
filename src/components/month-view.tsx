@@ -1,3 +1,4 @@
+import confetti from "canvas-confetti";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import {
@@ -64,6 +65,22 @@ export function MonthView({ month }: { month: MonthMeta }) {
   const year = selectYear({ years }, yearStart);
   const records = monthRecords(year, yearStart, month.id);
   const stats = monthStats(records);
+  const [goalReached, setGoalReached] = useState(false);
+useEffect(() => {
+  if (stats.hours === MONTHLY_GOAL && !goalReached) {
+    confetti({
+      particleCount: 200,
+      spread: 100,
+      origin: { y: 0.6 },
+    });
+
+    toast.success(
+      "🎉 ¡Felicitaciones! Has alcanzado tu objetivo mensual de 50 horas. ¡Sigue así!"
+    );
+
+    setGoalReached(true);
+  }
+}, [stats.hours, goalReached]);
   const notes = year.notes[month.id] ?? "";
   const [resetOpen, setResetOpen] = useState(false);
 
