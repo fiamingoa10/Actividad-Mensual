@@ -27,6 +27,7 @@ export function DashboardView() {
   const lastNote = useAppStore((s) => s.lastNote);
   const month = currentMonthMeta();
   const year = selectYear({ years }, yearStart);
+  const currentMonthNote = year.notes[month.id] ?? "";
   const records = monthRecords(year, yearStart, month.id);
   const stats = monthStats(records);
   const remaining = stats.remaining;
@@ -104,27 +105,41 @@ export function DashboardView() {
         </div>
 
         <Card>
-          <CardContent className="flex gap-3 p-5">
-            <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-secondary text-secondary-foreground">
-              <NotebookPen className="size-4" />
-            </div>
-            <div className="min-w-0">
-              <p className="text-sm font-medium">Última nota</p>
-              {lastNote?.text ? (
-                <>
-                  <p className="mt-1 line-clamp-3 text-sm text-muted-foreground">
-                    {lastNote.text}
+          <CardContent className="space-y-4 p-5">
+            <div className="flex gap-3">
+              <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-secondary text-secondary-foreground">
+                <NotebookPen className="size-4" />
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium">Última nota</p>
+
+                {lastNote?.text ? (
+                  <>
+                    <p className="mt-1 line-clamp-3 text-sm text-muted-foreground">
+                      {lastNote.text}
+                    </p>
+
+                    <p className="mt-2 text-xs text-muted-foreground">
+                      {getMonthById(lastNote.monthId)?.name}
+                    </p>
+                  </>
+                ) : (
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Todavía no hay notas en este ciclo.
                   </p>
-                  <p className="mt-2 text-xs text-muted-foreground">
-                    {getMonthById(lastNote.monthId)?.name}
-                  </p>
-                </>
-              ) : (
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Todavía no hay notas en este ciclo.
-                </p>
-              )}
+                )}
+              </div>
             </div>
+
+            <Button asChild variant="outline" className="w-full">
+              <Link to="/mes/$month" params={{ month: month.slug }}>
+                <NotebookPen className="size-4" />
+                {currentMonthNote.trim()
+                  ? `Editar nota de ${month.name}`
+                  : `Agregar nota en ${month.name}`}
+              </Link>
+            </Button>
           </CardContent>
         </Card>
 

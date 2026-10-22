@@ -7,6 +7,7 @@ import {
   Clock,
   Eraser,
   ListOrdered,
+  NotebookPen,
   Pencil,
   Plus,
   Target,
@@ -100,9 +101,9 @@ useEffect(() => {
 
         <GoalCard stats={stats} />
         <SummaryGrid stats={stats} />
+        <NotesBlock yearStart={yearStart} month={month} value={notes} />
         <RecordForm yearStart={yearStart} month={month} />
         <RecordList yearStart={yearStart} month={month} records={records} />
-        <NotesBlock yearStart={yearStart} month={month} value={notes} />
 
         <Button
           variant="outline"
@@ -552,32 +553,155 @@ function NotesBlock({
   value: string;
 }) {
   const setNotes = useAppStore((s) => s.setNotes);
-  const [text, setText] = useState(value);
+  const [open, setOpen] = useState(false);
+  const [draft, setDraft] = useState(value);
 
   useEffect(() => {
-    setText(value);
+    setDraft(value);
   }, [value, month.id, yearStart]);
 
-  useEffect(() => {
-    const handle = window.setTimeout(() => {
-      if (text !== value) setNotes(yearStart, month.id, text);
-    }, 400);
-    return () => window.clearTimeout(handle);
-  }, [text, value, yearStart, month.id, setNotes]);
+  function openEditor() {
+    setDraft(value);
+    setOpen(true);
+  }
+
+  function saveNote() {
+    const note = draft.trim();
+
+    if (!note) {
+      toast.error("Escribe una nota antes de guardarla.");
+      return;
+    }
+
+    setNotes(yearStart, month.id, note);
+    setOpen(false);
+    toast.success(`Nota de ${month.name} guardada.`);
+  }
+
+  function deleteNote() {
+    setNotes(yearStart, month.id, "");
+    setDraft("");
+    setOpen(false);
+    toast.success(`Nota de ${month.name} eliminada.`);
+  }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-base">Notas del mes</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Comentarios, observaciones, metas o recordatorios. Se guardan solos."
-        />
-        <p className="mt-2 text-xs text-muted-foreground">Guardado automático.</p>
-      </CardContent>
-    </Card>
+    <>
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-base">
+            <NotebookPen className="size-4" />
+            Nota de {month.name}
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent className="space-y-4">
+          {value.trim() ? (
+            <div className="rounded-xl bg-secondary p-4">
+              <p className="whitespace-pre-wrap break-words text-sm leading-relaxed">
+                {value}
+              </p>
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              Todavía no hay ninguna nota guardada en {month.name}.
+            </p>
+          )}
+
+          <Button
+            type="button"
+            variant={value.trim() ? "outline" : "default"}
+            className="w-full"
+            onClick={openEditor}
+          >
+            {value.trim() ? (
+              <>
+                <Pencil className="size-4" />
+                Editar nota de {month.name}
+              </>
+            ) : (
+              <>
+                <Plus className="size-4" />
+                Agregar nota en {month.name}
+              </>
+            )}
+          </Button>
+        </CardContent>
+      </Card>
+
+      <Dialog
+        open={open}
+        onOpenChange={(nextOpen) => {
+          setOpen(nextOpen);
+
+          if (!nextOpen) {
+            setDraft(value);
+          }
+        }}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              {value.trim()
+                ? `Editar nota de ${month.name}`
+                : `Agregar nota en ${month.name}`}
+            </DialogTitle>
+
+            <DialogDescription>
+              Esta nota pertenece únicamente a {month.name}.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-2">
+            <Label htmlFor={`month-note-${month.id}`}>
+              Nota del mes
+            </Label>
+
+            <Textarea
+              id={`month-note-${month.id}`}
+              value={draft}
+              onChange={(event) => setDraft(event.target.value)}
+              placeholder={`Escribe una observación, meta o recordatorio para ${month.name}.`}
+              className="min-h-40 resize-y"
+              autoFocus
+            />
+
+            <p className="text-xs text-muted-foreground">
+              La nota se guardará solamente dentro de {month.name}.
+            </p>
+          </div>
+
+          <DialogFooter className="gap-2 sm:gap-0">
+            {value.trim() ? (
+              <Button
+                type="button"
+                variant="outline"
+                className="text-destructive hover:text-destructive"
+                onClick={deleteNote}
+              >
+                <Trash2 className="size-4" />
+                Eliminar nota
+              </Button>
+            ) : null}
+
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setDraft(value);
+                setOpen(false);
+              }}
+            >
+              Cancelar
+            </Button>
+
+            <Button type="button" onClick={saveNote}>
+              Guardar nota
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
+
